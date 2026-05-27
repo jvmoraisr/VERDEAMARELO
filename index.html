@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerdeAmarelo | Camisas da Seleção</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #009c3b;
+    --amarelo: #FFDF00;
+    --azul: #002776;
+    --branco: #ffffff;
+    --preto: #0a0a0a;
+    --verde-escuro: #006428;
+    --amarelo-escuro: #c8a800;
+    --cinza: #1a1a1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--preto);
+    color: var(--branco);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--amarelo);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--amarelo);
+    text-decoration: none;
+  }
+  .logo span { color: var(--verde); }
+
+  nav a {
+    color: var(--branco);
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 2rem;
+    transition: color .2s;
+  }
+  nav a:hover { color: var(--amarelo); }
+
+  .nav-cta {
+    background: var(--amarelo);
+    color: var(--preto) !important;
+    padding: .45rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--amarelo-escuro) !important; color: var(--preto) !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 2.5rem 4rem;
+    background: radial-gradient(ellipse at 70% 50%, #003d1a 0%, #000 60%);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 25vw, 22rem);
+    color: rgba(255,223,0,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+
+  .hero-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+    animation: fadeUp .8s ease both;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--amarelo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: .3rem .9rem;
+    border-radius: 3px;
+    margin-bottom: 1.2rem;
+    animation: fadeUp .8s .1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: .95;
+    margin-bottom: 1.2rem;
+    animation: fadeUp .8s .2s ease both;
+  }
+  .hero-title .amarelo { color: var(--amarelo); }
+  .hero-title .verde { color: var(--verde); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,.7);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 2.2rem;
+    animation: fadeUp .8s .3s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp .8s .4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--amarelo);
+    color: var(--preto);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .85rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s, background .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { background: var(--amarelo-escuro); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--branco);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .85rem 2rem;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-secondary:hover { border-color: var(--amarelo); color: var(--amarelo); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,.1);
+    animation: fadeUp .8s .5s ease both;
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--amarelo);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: .8rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-top: .2rem;
+  }
+
+  .hero-visual {
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(300px, 45vw, 600px);
+    opacity: .15;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 5rem 2.5rem; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: .6rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .section-title .amarelo { color: var(--amarelo); }
+
+  /* ─── BANNER ─── */
+  #banner {
+    padding: 0;
+    background: var(--amarelo);
+    overflow: hidden;
+    position: relative;
+  }
+  .banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 3.5rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .banner-text { flex: 1; }
+  .banner-tag {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--amarelo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: .25rem .8rem;
+    border-radius: 3px;
+    margin-bottom: .8rem;
+  }
+  .banner-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--preto);
+    line-height: .95;
+    margin-bottom: .8rem;
+  }
+  .banner-sub {
+    font-size: 1rem;
+    color: rgba(0,0,0,.6);
+    max-width: 380px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .banner-cta {
+    background: var(--preto);
+    color: var(--amarelo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .8rem 1.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform .15s;
+  }
+  .banner-cta:hover { transform: translateY(-2px); }
+  .banner-deco {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 15vw, 12rem);
+    color: rgba(0,0,0,.06);
+    position: absolute;
+    right: 2rem; top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  /* ─── CATÁLOGO ─── */
+  #catalogo { background: var(--cinza); }
+  .catalogo-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .filtros {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .filtro-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .4rem 1.2rem;
+    border: 1.5px solid rgba(255,255,255,.2);
+    background: transparent;
+    color: rgba(255,255,255,.6);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .filtro-btn.ativo, .filtro-btn:hover {
+    background: var(--amarelo);
+    border-color: var(--amarelo);
+    color: var(--preto);
+  }
+
+  .produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+
+  .card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1a3a1a 0%, #003300 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-badge {
+    position: absolute;
+    top: .8rem; left: .8rem;
+    background: var(--verde);
+    color: var(--amarelo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .75rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .2rem .6rem;
+    border-radius: 3px;
+  }
+  .card-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: .03em;
+    margin-bottom: .3rem;
+  }
+  .card-desc {
+    font-size: .85rem;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--amarelo);
+  }
+  .card-price small {
+    font-family: 'Barlow', sans-serif;
+    font-size: .7rem;
+    color: rgba(255,255,255,.4);
+    display: block;
+    line-height: 1.2;
+  }
+  .card-btn {
+    background: var(--verde);
+    color: var(--branco);
+    border: none;
+    border-radius: 4px;
+    padding: .5rem 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+    text-decoration: none;
+  }
+  .card-btn:hover { background: var(--verde-escuro); }
+
+  /* ─── DEPOIMENTOS ─── */
+  #depoimentos { background: var(--preto); }
+  .depo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+  }
+  .depo-card {
+    background: #141414;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .depo-card::before {
+    content: '"';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--amarelo);
+    opacity: .15;
+    position: absolute;
+    top: .5rem; left: 1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .depo-stars { color: var(--amarelo); font-size: 1rem; margin-bottom: .8rem; }
+  .depo-text {
+    font-size: .95rem;
+    color: rgba(255,255,255,.7);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .depo-autor {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+  .depo-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--verde);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--amarelo);
+    flex-shrink: 0;
+  }
+  .depo-nome {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: .95rem;
+  }
+  .depo-local { font-size: .8rem; color: rgba(255,255,255,.4); }
+
+  /* ─── CONTATO / WHATSAPP ─── */
+  #contato {
+    background: linear-gradient(135deg, #001a0d 0%, #0a0a0a 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #contato::before {
+    content: '⚽';
+    position: absolute;
+    font-size: 20rem;
+    opacity: .03;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .contato-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .contato-inner .section-title { margin-bottom: .5rem; }
+  .contato-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 4px 24px rgba(37,211,102,.3);
+  }
+  .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,211,102,.45); }
+  .wpp-icon { font-size: 1.4rem; }
+
+  .contato-info {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .info-item { text-align: center; }
+  .info-icon { font-size: 1.4rem; margin-bottom: .3rem; }
+  .info-text { font-size: .85rem; color: rgba(255,255,255,.5); }
+  .info-text strong { color: var(--branco); display: block; font-size: .95rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--amarelo);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--verde); }
+  .footer-copy { font-size: .8rem; color: rgba(255,255,255,.3); }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wpp-float {
+    position: fixed;
+    bottom: 1.8rem; right: 1.8rem;
+    z-index: 200;
+    background: #25D366;
+    color: #fff;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,.45);
+    text-decoration: none;
+    transition: transform .2s;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  .wpp-float:hover { transform: scale(1.1); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%); }
+    50%       { transform: translateY(calc(-50% - 20px)); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.45); }
+    50%       { box-shadow: 0 4px 30px rgba(37,211,102,.8); }
+  }
+
+  /* ─── REVEAL ON SCROLL ─── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    header { padding: 1rem 1.2rem; }
+    nav a:not(.nav-cta) { display: none; }
+    section { padding: 4rem 1.2rem; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns a { text-align: center; }
+    .banner-inner { padding: 2.5rem 1.2rem; }
+    .banner-deco { display: none; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">Verde<span>Amarelo</span></a>
+  <nav>
+    <a href="#catalogo">Camisas</a>
+    <a href="#depoimentos">Avaliações</a>
+    <a href="#contato" class="nav-cta">Comprar agora</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">BRASIL</div>
+  <div class="hero-content">
+    <div class="hero-badge">🏆 Copa do Mundo 2026</div>
+    <h1 class="hero-title">
+      Vista as<br>
+      <span class="amarelo">cores</span> do<br>
+      <span class="verde">Brasil</span>
+    </h1>
+    <p class="hero-sub">Camisas oficiais e replicadas da Seleção Brasileira. Qualidade premium, entrega rápida e o melhor preço para você torcer com estilo.</p>
+    <div class="hero-btns">
+      <a href="#catalogo" class="btn-primary">⚽ Ver camisas</a>
+      <a href="#contato" class="btn-secondary">Falar no WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Clientes felizes</div>
+      </div>
+      <div>
+        <div class="stat-num">48h</div>
+        <div class="stat-label">Entrega expressa</div>
+      </div>
+      <div>
+        <div class="stat-num">5★</div>
+        <div class="stat-label">Avaliação média</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER PROMOCIONAL -->
+<div id="banner">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <div class="banner-tag">🔥 Oferta especial Copa</div>
+      <h2 class="banner-title">FRETE<br>GRÁTIS<br>HOJE!</h2>
+      <p class="banner-sub">Em compras acima de R$150. Aproveite antes que acabe — estoque limitado para a Copa!</p>
+      <a href="#contato" class="banner-cta">Aproveitar oferta →</a>
+    </div>
+    <div class="banner-deco">🇧🇷</div>
+  </div>
+</div>
+
+<!-- CATÁLOGO -->
+<section id="catalogo">
+  <div class="catalogo-header reveal">
+    <div class="section-label">Nosso catálogo</div>
+    <h2 class="section-title">Camisas em <span class="amarelo">destaque</span></h2>
+    <p style="color:rgba(255,255,255,.5); font-size:.95rem; max-width:440px; margin:.5rem auto 0; line-height:1.6;">Selecione o modelo ideal e entre em contato para confirmar tamanho e cor disponíveis.</p>
+    <div class="filtros">
+      <button class="filtro-btn ativo" onclick="filtrar('todos', this)">Todos</button>
+      <button class="filtro-btn" onclick="filtrar('selecao', this)">Seleção</button>
+      <button class="filtro-btn" onclick="filtrar('retro', this)">Retrô</button>
+      <button class="filtro-btn" onclick="filtrar('treino', this)">Treino</button>
+    </div>
+  </div>
+
+  <div class="produtos-grid" id="grid-produtos">
+    <!-- Cards injetados pelo JS -->
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="reveal" style="text-align:center; margin-bottom:1rem;">
+    <div class="section-label">O que dizem os clientes</div>
+    <h2 class="section-title">Quem comprou, <span class="amarelo">aprovou</span></h2>
+  </div>
+  <div class="depo-grid">
+    <div class="depo-card reveal">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-text">Camisa incrível! Chegou em 2 dias aqui em Fortaleza, qualidade muito boa, tecido leve e confortável. Já pedi mais duas para os filhos!</p>
+      <div class="depo-autor">
+        <div class="depo-avatar">RC</div>
+        <div>
+          <div class="depo-nome">Ricardo C.</div>
+          <div class="depo-local">Fortaleza, CE</div>
+        </div>
+      </div>
+    </div>
+    <div class="depo-card reveal">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-text">Atendimento pelo WhatsApp foi excelente. Respondi rápido, tirei dúvidas sobre tamanho e a camisa ficou perfeita. Super recomendo!</p>
+      <div class="depo-autor">
+        <div class="depo-avatar">AM</div>
+        <div>
+          <div class="depo-nome">Ana M.</div>
+          <div class="depo-local">Caucaia, CE</div>
+        </div>
+      </div>
+    </div>
+    <div class="depo-card reveal">
+      <div class="depo-stars">★★★★★</div>
+      <p class="depo-text">Comprei a versão retrô de 1970 e ficou melhor do que esperava. Vou usar na estreia do Brasil. Muito obrigado pelo atendimento!</p>
+      <div class="depo-autor">
+        <div class="depo-avatar">JS</div>
+        <div>
+          <div class="depo-nome">João S.</div>
+          <div class="depo-local">Maracanaú, CE</div>
+        </div>
+      </div>
+    </div>
+    <div class="depo-card reveal">
+      <div class="depo-stars">★★★★☆</div>
+      <p class="depo-text">Produto de qualidade e preço justo. O envio demorou um dia a mais que o previsto, mas chegou em perfeito estado. Voltarei a comprar!</p>
+      <div class="depo-autor">
+        <div class="depo-avatar">PL</div>
+        <div>
+          <div class="depo-nome">Paula L.</div>
+          <div class="depo-local">Sobral, CE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contato-inner reveal">
+    <div class="section-label">Fale com a gente</div>
+    <h2 class="section-title">Pronto para <span class="amarelo">torcer</span>?</h2>
+    <p class="contato-sub">Escolheu a camisa? Manda mensagem no WhatsApp, informe o modelo, tamanho e sua localização. A gente resolve tudo rapidinho! 🇧🇷</p>
+    <a href="https://wa.me/5585999999999?text=Olá!%20Vi%20o%20site%20e%20quero%20comprar%20uma%20camisa%20da%20Seleção!" class="whatsapp-btn" target="_blank">
+      <span class="wpp-icon">💬</span> Chamar no WhatsApp
+    </a>
+    <div class="contato-info">
+      <div class="info-item">
+        <div class="info-icon">📦</div>
+        <div class="info-text"><strong>Entrega para todo Brasil</strong>Correios e transportadora</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">💳</div>
+        <div class="info-text"><strong>Pix e cartão</strong>Parcelamos em até 3x</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div class="info-text"><strong>Atendimento</strong>Seg–Sáb, 8h às 20h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Verde<span>Amarelo</span></a>
+  <p class="footer-copy">© 2026 VerdeAmarelo Camisas · Todos os direitos reservados</p>
+</footer>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://wa.me/5585999999999?text=Olá!%20Quero%20comprar%20uma%20camisa%20da%20Seleção!" class="wpp-float" target="_blank" title="Falar no WhatsApp">💬</a>
+
+<script>
+const produtos = [
+  { id:1, emoji:'🟡', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-lisa-1-45de16a7e76dae80c917741195534068-1024-1024.webp', nome:'Seleção Brasileira 2026', desc:'Camisa oficial home — verde e amarelo', preco:'R$ 130,00', categoria:'selecao', badge:'Lançamento' },
+  { id:2, emoji:'⬛', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-away-ii-azul-uniforme-reserva-copa-do-mundo-2026-masculina-modelo-torcedor-neymar-vini-jr-vinicius-rodrygo-richarlisson-bruno-guimaraes-marquinhos-estevao-paqueta-1-cc2caa45436536967717682802503822-1024-1024.webp', nome:'Seleção Brasileira 2026 2', desc:'Camisa oficial away — azul escuro', preco:'R$ 135,00', categoria:'selecao', badge:'Novo' },
+  { id:3, emoji:'🟢', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-player-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-1-9ca3afcec741ffb43e17791433875009-1024-1024.webp', nome:'Camisa 1 (Modelo jogador)', desc:'Edição especial jogador', preco:'R$ 150,00', categoria:'jogador', badge:'Especial' },
+];
+
+function renderProdutos(lista) {
+  const grid = document.getElementById('grid-produtos');
+  grid.innerHTML = lista.map(p => `
+    <div class="card reveal">
+      <div class="card-img" style="overflow:hidden; position:relative;">
+        ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
+        ${p.imagem
+          ? `<img src="${p.imagem}" alt="${p.nome}" style="width:100%; height:100%; object-fit:cover; display:block;">`
+          : `<span style="font-size:4.5rem">${p.emoji}</span>`}
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.nome}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-footer">
+          <div class="card-price">
+            ${p.preco}
+            <small>ou 3x sem juros</small>
+          </div>
+          <a href="https://wa.me/5585999999999?text=Olá!%20Tenho%20interesse%20na%20camisa:%20${encodeURIComponent(p.nome)}" target="_blank" class="card-btn">Pedir agora</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+function filtrar(cat, btn) {
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+  btn.classList.add('ativo');
+  const lista = cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat);
+  renderProdutos(lista);
+}
+
+// Scroll reveal
+function observeReveal() {
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+}
+
+renderProdutos(produtos);
+observeReveal();
+</script>
+</body>
+</html>
