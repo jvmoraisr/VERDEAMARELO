@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerdeAmarelo | Detalhes do Produto</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #009c3b;
+    --amarelo: #FFDF00;
+    --azul: #002776;
+    --branco: #ffffff;
+    --preto: #0a0a0a;
+    --cinza: #1a1a1a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--preto);
+    color: var(--branco);
+    padding: 2rem 1.2rem;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 4rem auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  
+  /* Galeria GOAT Style */
+  .galeria {
+    flex: 1;
+    min-width: 300px;
+  }
+  .foto-principal {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #141414;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .foto-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .miniaturas {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: .5rem;
+    margin-top: 1rem;
+  }
+  .miniaturas img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #141414;
+    border: 2px solid transparent;
+    opacity: 0.5;
+    transition: all 0.2s;
+  }
+  .miniaturas img.ativa, .miniaturas img:hover {
+    border-color: var(--amarelo);
+    opacity: 1;
+  }
+
+  /* Info do Produto */
+  .info {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .back-btn {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .back-btn:hover { color: var(--amarelo); }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    color: var(--amarelo);
+    margin-bottom: .5rem;
+  }
+  .desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .preco {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .preco small {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,.4);
+    display: block;
+  }
+  .wpp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background .2s;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .wpp-btn:hover { background: #1ebd54; }
+
+  /* Detalhes Técnicos */
+  .detalhes-produto-container {
+    background: var(--cinza);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .abas-detalhes {
+    display: flex;
+    background: #141414;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .aba-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .aba-btn.ativa {
+    color: var(--amarelo);
+    background: var(--cinza);
+    border-bottom: 2px solid var(--amarelo);
+  }
+  .conteudo-aba {
+    display: none;
+    padding: 1.5rem;
+    animation: fadeIn 0.3s ease both;
+  }
+  .conteudo-aba.ativo {
+    display: block;
+  }
+  .lista-specs {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .lista-specs li {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 0.5rem;
+  }
+  .lista-specs strong {
+    color: var(--amarelo);
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.15rem;
+  }
+  .tabela-medidas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .tabela-medidas th {
+    background: #141414;
+    color: var(--amarelo);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .tabela-medidas td {
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .tabela-medidas tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+  .aviso-importante {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="galeria">
+    <a href="index.html" class="back-btn">← Voltar ao catálogo</a>
+    <div class="foto-principal">
+      <img id="principal" src="" alt="Produto">
+    </div>
+    <div class="miniaturas" id="thumb-container"></div>
+  </div>
+  
+  <div class="info">
+    <h1 id="titulo">Nome da Camisa</h1>
+    <p class="desc" id="descricao">Descrição detalhada do modelo.</p>
+    <div class="preco" id="preco">R$ 00,00 <small>ou 3x sem juros no cartão</small></div>
+    <a href="" id="link-wpp" target="_blank" class="wpp-btn">💬 Garantir pelo WhatsApp</a>
+
+    <div class="detalhes-produto-container">
+      <div class="abas-detalhes">
+        <button class="aba-btn ativa" onclick="alternarAba('specs', this)">Especificações</button>
+        <button class="aba-btn" onclick="alternarAba('tabela', this)">Tabela de Medidas</button>
+      </div>
+
+      <div id="aba-specs" class="conteudo-aba ativo">
+        <ul class="lista-specs">
+          <li><strong>Gênero</strong>Masculino / Unissex</li>
+          <li><strong>Indicado para</strong>Jogo / Dia a Dia</li>
+          <li><strong>Gola</strong>Careca anatômica / V</li>
+          <li><strong>Material</strong>100% Poliéster Premium</li>
+          <li><strong>Tecnologia</strong>Absorção de Suor / Respirável</li>
+          <li><strong>Manga</strong>Curta</li>
+          <li><strong>Escudo</strong>Bordado de alta definição</li>
+          <li><strong>Personalização</strong>Suporta Nome e Número nas costas</li>
+        </ul>
+      </div>
+
+      <div id="aba-tabela" class="conteudo-aba">
+        <table class="tabela-medidas">
+          <thead>
+            <tr>
+              <th>Tamanho</th>
+              <th>Largura (cm)</th>
+              <th>Altura (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>P</td><td>49 - 51</td><td>68 - 71</td></tr>
+            <tr><td>M</td><td>51 - 53</td><td>71 - 73</td></tr>
+            <tr><td>G</td><td>53 - 55</td><td>73 - 76</td></tr>
+            <tr><td>GG</td><td>55 - 58</td><td>76 - 79</td></tr>
+            <tr><td>XG</td><td>58 - 62</td><td>79 - 82</td></tr>
+          </tbody>
+        </table>
+        <p class="aviso-importante">⚠️ <strong>Aviso:</strong> As medidas podem variar de 1 a 2 cm para mais ou para menos. Na dúvida, escolha um tamanho maior.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const bancoImagens = {
+  'brasil-home': {
+    nome: 'Seleção Brasileira 2026',
+    desc: 'Camisa oficial home — verde e amarelo. Versão Torcedor com tecido de alta tecnologia e acabamento premium para o melhor conforto.',
+    preco: 'R$ 160,00',
+    fotos: [
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/0fdb55b9-b66d-4fbd-960d-bfb258465499-compressed.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/3ea417ff-9c9f-40aa-ab1a-8795959117a7-compressed.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/914a64c7-554b-4d3f-8c01-69df6ebdad2a-compressed.jpg'
+    ]
+  },
+  'brasil-away': {
+    nome: 'Seleção Brasileira 2026 2',
+    desc: 'Camisa oficial away — azul escuro. Detalhes com grafismos texturizados modernos que homenageiam a cultura brasileira.',
+    preco: 'R$ 160,00',
+    fotos: [
+      'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-away-ii-azul-uniforme-reserva-copa-do-mundo-2026-masculina-modelo-torcedor-neymar-vini-jr-vinicius-rodrygo-richarlisson-bruno-guimaraes-marquinhos-estevao-paqueta-1-cc2caa45436536967717682802503822-1024-1024.webp',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/323656/ferfsd/feminina/e11ddeb9-59c6-473d-96e6-19f1b4f0d4af-compressed.jpg',  ]
+ 
+  },
+  'brasil-jogador-1': {
+    nome: 'Camisa 1 (Modelo jogador)',
+    desc: 'Edição de alta performance idêntica à que os craques vestem em campo. Caimento slim fit justo ao corpo com tecido aerodinâmico.',
+    preco: 'R$ 180,00',
+    fotos: [
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/7d47b7cd-9eb9-4295-a338-6c9b67ef3b89-compressed-1.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/d4dc083d-7ece-4516-875d-b57196deeadc-compressed-1.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/84e4dc1e-1a3e-40da-9f72-de9abb7463cb-compressed-1.jpg',
+      'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-player-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-1-9ca3afcec741ffb43e17791433875009-1024-1024.webp',  ]
+  },
+  'brasil-jogador-2': {
+    nome: 'Camisa 2 (Modelo jogador)',
+    desc: 'Edição especial de jogador reserva. Tecido tecnológico focado em respirabilidade e escudo emborrachado termoselado ultra-leve.',
+    preco: 'R$ 170,00',
+    fotos: [
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/4649988/gfhgh/arsenal/xfhdhff/hjkgjkg/530801e3-7eaa-449f-be77-dd8bbf6b2c6d-compressed.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/4649988/gfhgh/arsenal/xfhdhff/hjkgjkg/eb2abe24-7a5a-4c32-8d58-d549940c5118-compressed.jpg',
+      'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/lkjh/hyjfghf/hnnhg/95816/ghfdgdf/hvnb/dasdfg/tyutrr/4649988/gfhgh/arsenal/xfhdhff/hjkgjkg/d54b4aee-dd94-476e-984a-708802df77c5-compressed.jpg',
+      ]
+  }
+};
+
+const urlParams = new URLSearchParams(window.location.search);
+const camisaId = urlParams.get('camisa') || 'brasil-home';
+const produto = bancoImagens[camisaId];
+
+if (produto) {
+  document.getElementById('titulo').innerText = produto.nome;
+  document.getElementById('descricao').innerText = produto.desc;
+  document.getElementById('preco').innerHTML = `${produto.preco} <small>ou 3x sem juros no cartão</small>`;
+  document.getElementById('link-wpp').href = `https://wa.me/5585996630561?text=Olá!%20Gostei%20dos%20detalhes%20no%20site%20e%20quero%20pedir%20a%20${encodeURIComponent(produto.nome)}`;
+
+  const imgPrincipal = document.getElementById('principal');
+  imgPrincipal.src = produto.fotos[0];
+
+  const containerThumbs = document.getElementById('thumb-container');
+  containerThumbs.innerHTML = produto.fotos.map((foto, index) => `
+    <img src="${foto}" class="${index === 0 ? 'ativa' : ''}" onclick="trocarImagem(this)">
+  `).join('');
+}
+
+function trocarImagem(el) {
+  document.getElementById('principal').src = el.src;
+  document.querySelectorAll('.miniaturas img').forEach(img => img.classList.remove('ativa'));
+  el.classList.add('ativa');
+}
+
+function alternarAba(abaId, btn) {
+  document.querySelectorAll('.conteudo-aba').forEach(content => content.classList.remove('ativo'));
+  document.querySelectorAll('.aba-btn').forEach(b => b.classList.remove('ativa'));
+  
+  document.getElementById(`aba-${abaId}`).classList.add('ativo');
+  btn.classList.add('ativa');
+}
+</script>
+</body>
+</html>
