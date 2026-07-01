@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VerdeAmarelo | Camisas da Seleção</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
-  <script>
+
+<!-- ✅ Meta Pixel Code — posicionado corretamente no <head> -->
+<script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -17,10 +19,8 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1833038661009440');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1833038661009440&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
+
 <style>
   :root {
     --verde: #009c3b;
@@ -617,6 +617,11 @@ src="https://www.facebook.com/tr?id=1833038661009440&ev=PageView&noscript=1"
 </head>
 <body>
 
+<!-- ✅ Meta Pixel noscript — posicionado logo após <body> conforme recomendação do Meta -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1833038661009440&ev=PageView&noscript=1"
+/></noscript>
+
 <!-- HEADER -->
 <header>
   <a href="#" class="logo">Verde<span>Amarelo</span></a>
@@ -751,9 +756,15 @@ src="https://www.facebook.com/tr?id=1833038661009440&ev=PageView&noscript=1"
     <div class="section-label">Fale com a gente</div>
     <h2 class="section-title">Pronto para <span class="amarelo">torcer</span>?</h2>
     <p class="contato-sub">Escolheu a camisa? Manda mensagem no WhatsApp, informe o modelo, tamanho e sua localização. A gente resolve tudo rapidinho! 🇧🇷</p>
-    <a href="https://wa.me/5585996630561?text=Olá!%20Vi%20o%20site%20e%20quero%20comprar%20uma%20camisa%20da%20Seleção!" class="whatsapp-btn" target="_blank">
+
+    <!-- ✅ Evento Contact disparado ao clicar no botão principal do WhatsApp -->
+    <a href="https://wa.me/5585996630561?text=Olá!%20Vi%20o%20site%20e%20quero%20comprar%20uma%20camisa%20da%20Seleção!"
+       class="whatsapp-btn"
+       target="_blank"
+       onclick="fbq('track', 'Contact');">
       <span class="wpp-icon">💬</span> Chamar no WhatsApp
     </a>
+
     <div class="contato-info">
       <div class="info-item">
         <div class="info-icon">📦</div>
@@ -777,24 +788,78 @@ src="https://www.facebook.com/tr?id=1833038661009440&ev=PageView&noscript=1"
   <p class="footer-copy">© 2026 VerdeAmarelo Camisas · Todos os direitos reservados</p>
 </footer>
 
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a href="https://wa.me/5585996630561?text=Olá!%20Quero%20comprar%20uma%20camisa%20da%20Seleção!" class="wpp-float" target="_blank" title="Falar no WhatsApp">💬</a>
+<!-- ✅ Botão flutuante WhatsApp com evento Contact -->
+<a href="https://wa.me/5585996630561?text=Olá!%20Quero%20comprar%20uma%20camisa%20da%20Seleção!"
+   class="wpp-float"
+   target="_blank"
+   title="Falar no WhatsApp"
+   onclick="fbq('track', 'Contact');">💬</a>
 
 <script>
 const produtos = [
-  { id:'brasil-home', emoji:'🟡', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-lisa-1-45de16a7e76dae80c917741195534068-1024-1024.webp', nome:'Seleção Brasileira 2026', desc:'Camisa oficial home — verde e amarelo', preco:'R$ 150,00', categoria:'selecao', badge:'Lançamento' },
-  { id:'brasil-away', emoji:'⬛', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-away-ii-azul-uniforme-reserva-copa-do-mundo-2026-masculina-modelo-torcedor-neymar-vini-jr-vinicius-rodrygo-richarlisson-bruno-guimaraes-marquinhos-estevao-paqueta-1-cc2caa45436536967717682802503822-1024-1024.webp', nome:'Seleção Brasileira 2026 2', desc:'Camisa oficial away — azul escuro', preco:'R$ 160,00', categoria:'selecao', badge:'Lançamento' },
-  { id:'brasil-jogador-1', emoji:'🟢', imagem:'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-player-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-1-9ca3afcec741ffb43e17791433875009-1024-1024.webp', nome:'Camisa 1 (Modelo jogador)', desc:'Edição especial jogador', preco:'R$ 160,00', categoria:'jogador', badge:'Especial' },
-  { id:'brasil-jogador-2', emoji:'🟢', imagem:'https://acdn-us.mitiendanube.com/stores/004/317/806/products/a728baa3-2c237a302a43547b9c17677865140258-1024-1024.webp', nome:'Camisa 2 (Modelo jogador)', desc:'Edição especial jogador', preco:'R$ 160,00', categoria:'jogador', badge:'Especial' },
-  { id:'brasil-homefem-2', emoji:'🟢', imagem:'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/6df1aa72-dbb3-4280-9ad2-8da56ca9e1fb-compressed.jpg', nome:'Camisa 1 (Modelo feminino)', desc:'Edição especial feminina', preco:'R$ 180,00', categoria:'torcedor', badge:'Especial' },
+  {
+    id: 'brasil-home',
+    emoji: '🟡',
+    imagem: 'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-lisa-1-45de16a7e76dae80c917741195534068-1024-1024.webp',
+    nome: 'Seleção Brasileira 2026',
+    desc: 'Camisa oficial home — verde e amarelo',
+    preco: 'R$ 150,00',
+    precoNum: 150.00,
+    categoria: 'selecao',
+    badge: 'Lançamento'
+  },
+  {
+    id: 'brasil-away',
+    emoji: '⬛',
+    imagem: 'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-away-ii-azul-uniforme-reserva-copa-do-mundo-2026-masculina-modelo-torcedor-neymar-vini-jr-vinicius-rodrygo-richarlisson-bruno-guimaraes-marquinhos-estevao-paqueta-1-cc2caa45436536967717682802503822-1024-1024.webp',
+    nome: 'Seleção Brasileira 2026 2',
+    desc: 'Camisa oficial away — azul escuro',
+    preco: 'R$ 160,00',
+    precoNum: 160.00,
+    categoria: 'selecao',
+    badge: 'Lançamento'
+  },
+  {
+    id: 'brasil-jogador-1',
+    emoji: '🟢',
+    imagem: 'https://acdn-us.mitiendanube.com/stores/001/876/620/products/camisa-selecao-brasileira-brasil-masculina-player-home-i-amarela-uniforme-titular-2026-copa-do-mundo-neymar-vini-jr-vinicius-rodrygo-1-9ca3afcec741ffb43e17791433875009-1024-1024.webp',
+    nome: 'Camisa 1 (Modelo jogador)',
+    desc: 'Edição especial jogador',
+    preco: 'R$ 160,00',
+    precoNum: 160.00,
+    categoria: 'jogador',
+    badge: 'Especial'
+  },
+  {
+    id: 'brasil-jogador-2',
+    emoji: '🟢',
+    imagem: 'https://acdn-us.mitiendanube.com/stores/004/317/806/products/a728baa3-2c237a302a43547b9c17677865140258-1024-1024.webp',
+    nome: 'Camisa 2 (Modelo jogador)',
+    desc: 'Edição especial jogador',
+    preco: 'R$ 160,00',
+    precoNum: 160.00,
+    categoria: 'jogador',
+    badge: 'Especial'
+  },
+  {
+    id: 'brasil-homefem-2',
+    emoji: '🟢',
+    imagem: 'https://img.irroba.com.br/fit-in/600x600/filters:format(webp):fill(fff):quality(80)/fortalim/catalog/guuivach/palmeiras-branca/kjbkj/xbxfs/fdfdf/hygfdr/vbbncv/fc-xd/fdvssdd/gfhtett/8996/kjhgjh/6df1aa72-dbb3-4280-9ad2-8da56ca9e1fb-compressed.jpg',
+    nome: 'Camisa 1 (Modelo feminino)',
+    desc: 'Edição especial feminina',
+    preco: 'R$ 180,00',
+    precoNum: 180.00,
+    categoria: 'torcedor',
+    badge: 'Especial'
+  },
 ];
 
 function renderProdutos(lista) {
   const grid = document.getElementById('grid-produtos');
   grid.innerHTML = lista.map(p => `
     <div class="card reveal">
-      <!-- Mudança estratégica: Redirecionando para camisatorcedor.html -->
-      <a href="camisatorcedor.html?camisa=${p.id}" target="_blank" class="product-link">
+      <a href="camisatorcedor.html?camisa=${p.id}" target="_blank" class="product-link"
+         onclick="fbq('track', 'ViewContent', { content_name: '${p.nome}', content_category: 'Camisas', value: ${p.precoNum}, currency: 'BRL' });">
         <div class="card-img">
           ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
           ${p.imagem
@@ -803,7 +868,8 @@ function renderProdutos(lista) {
         </div>
       </a>
       <div class="card-body">
-        <a href="camisatorcedor.html?camisa=${p.id}" target="_blank" class="product-link">
+        <a href="camisatorcedor.html?camisa=${p.id}" target="_blank" class="product-link"
+           onclick="fbq('track', 'ViewContent', { content_name: '${p.nome}', content_category: 'Camisas', value: ${p.precoNum}, currency: 'BRL' });">
           <div class="card-name">${p.nome}</div>
         </a>
         <div class="card-desc">${p.desc}</div>
@@ -812,7 +878,13 @@ function renderProdutos(lista) {
             ${p.preco}
             <small>ou 3x sem juros</small>
           </div>
-          <a href="https://wa.me/5585996630561?text=Olá!%20Tenho%20interesse%20na%20camisa:%20${encodeURIComponent(p.nome)}" target="_blank" class="card-btn">Pedir agora</a>
+          <!-- ✅ Evento Contact + InitiateCheckout ao clicar em "Pedir agora" -->
+          <a href="https://wa.me/5585996630561?text=Olá!%20Tenho%20interesse%20na%20camisa:%20${encodeURIComponent(p.nome)}"
+             target="_blank"
+             class="card-btn"
+             onclick="fbq('track', 'InitiateCheckout', { content_name: '${p.nome}', value: ${p.precoNum}, currency: 'BRL' }); fbq('track', 'Contact');">
+            Pedir agora
+          </a>
         </div>
       </div>
     </div>
@@ -830,7 +902,12 @@ function filtrar(cat, btn) {
 function observeReveal() {
   const els = document.querySelectorAll('.reveal:not(.visible)');
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.12 });
   els.forEach(el => obs.observe(el));
 }
